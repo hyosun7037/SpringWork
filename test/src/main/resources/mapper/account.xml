@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sunny.test.repository.AccountRepository">
+	<select id="findAll" resultType ="com.sunny.test.model.Account"> <!-- persistence 타입을 기재 -->
+		SELECT * FROM account
+	</select> <!-- id는 함수명과 동일하게 생성 -->
+	
+	
+	<select id="findByAccountNumber" resultType ="com.sunny.test.model.Account"> <!-- persistence 타입을 기재 -->
+		SELECT * FROM account WHERE accountNumber = #{accountNumber}
+	</select> <!-- id는 함수명과 동일하게 생성 -->
+	
+	
+	<update id="update"> <!-- repository의 함수 명과 매치 -->
+	 	UPDATE account SET money = #{money} WHERE accountNumber = #{accountNumber} <!-- 구조분할할당, #은 데이터 분할할 때 사용(MyBatis 문법) -->
+	</update>
+</mapper>
