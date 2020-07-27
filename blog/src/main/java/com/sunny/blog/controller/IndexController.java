@@ -10,7 +10,7 @@ public class IndexController {
 	
 	@GetMapping({"","/"})
 	public String index() {
-		return "index";
+		return "redirect:/posts";
 	}
 	// auth 처리
 	@GetMapping("/auth/joinForm")

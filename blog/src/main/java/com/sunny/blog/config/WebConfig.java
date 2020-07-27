@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(new SessionIntercepter()) // 다른 곳에서 쓸 일 없으면 바로 new로 넣어줌
 		.addPathPatterns("/user/**")
 		.addPathPatterns("/post/**")
-		.addPathPatterns("/post**");
+		.addPathPatterns("/post**"); // posts는 여기서 걸림
 		
 		registry.addInterceptor(new RoleIntercepter())
 		.addPathPatterns("/admin/**");
