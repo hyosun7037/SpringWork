@@ -15,9 +15,13 @@
 	</select>
 	
 	<select id="findById" resultType="com.sunny.blog.controller.dto.PostDetailRespDto">
-	select p.id, p.title, p.content, u.username 
-	from post p inner join user u 
-	on p.userid = u.id 
-	where p.id = #{id} 
+		select p.id, p.title, p.content, u.username 
+		from post p inner join user u 
+		on p.userid = u.id 
+		where p.id = #{id} 
 	</select>
+	
+	<delete id="deleteOne">
+		delete from post where id = #{id}
+	</delete>
 </mapper>

@@ -10,4 +10,5 @@ public interface PostRepository {
 	public void save(Post post); // save 함수의 mapper가 없음
 	public List<Post> findAll();
 	public PostDetailRespDto findById(int id);
-}
+	public void deleteOne(int id);
+} 

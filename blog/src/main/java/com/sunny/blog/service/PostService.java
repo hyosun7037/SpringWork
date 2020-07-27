@@ -31,4 +31,9 @@ public class PostService {
 	public PostDetailRespDto 상세보기(int id) {  // 작성자도 받아야함
 		return postRepository.findById(id);
 	} 
+	
+	@Transactional
+	public void 삭제하기(int id) {  // 작성자도 받아야함
+		postRepository.deleteOne(id);
+	} 
 }

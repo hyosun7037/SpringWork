@@ -8,7 +8,10 @@ let index = {
 		//로그인 리스너
 		$("#btn-login").on("click", () => { // ()안에 아무 변수가 들어가도 콜백시 그 자리에 오브젝트가 들어감
 			this.login();
-		}); 
+		}),
+		$("#btn-delete").on("click", () => { // ()안에 아무 변수가 들어가도 콜백시 그 자리에 오브젝트가 들어감
+			this.deleteOne();
+		})
 	},
 	save: function(){ // 회원가입 로직 실행
 		let data = {
@@ -31,6 +34,23 @@ let index = {
 			console.log(error);	
 		})
 	}, //save
+	deleteOne: function(){ // 회원가입 로직 실행
+		let data = {
+			id:$("#id").val()
+		};
+		$.ajax({
+			type:"DELETE",
+			url:"/post/"+data.id, // post만 넣기
+			dataType: "json"// 서버로부터 응답받을 때 데이터 타입
+		}).done((resp)=>{ 
+			alert("삭제성공");
+			location.href="/";
+			console.log(resp); // 자바스크립트 오브젝트가 되서 날라옴
+		}).fail((error)=>{ // 실패시 ajax 통신이 안된 것
+			alert("삭제실패");
+			console.log(error);	
+		}) // deleteOne
+	}
 }
 
 index.init();

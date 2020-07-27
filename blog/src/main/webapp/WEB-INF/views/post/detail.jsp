@@ -24,14 +24,19 @@
     </thead>
     <tbody>
       <tr>
-        <td><input type="text" value="${postDetailRespDto.id}" readonly/></td>
-        <td><input type="text" value="${postDetailRespDto.title}" readonly/></td>
-        <td><input type="text" value="${postDetailRespDto.content}" /> </td>
-        <td><input type="text" value="${postDetailRespDto.username}" readonly/></td>
+        <td><input id="id" type="text" value="${postDetailRespDto.id}" readonly/></td>
+        <td><input id="title" type="text" value="${postDetailRespDto.title}" readonly/></td>
+        <td><input id="content" type="text" value="${postDetailRespDto.content}" /> </td>
+        <td><input id="username" type="text" value="${postDetailRespDto.username}" readonly/></td>
       </tr>
     </tbody>
   </table>
+  <button id="btn-update-mode" class="btn btn-warning">수정</button>
+  <button id="btn-delete" class="btn btn-danger">삭제</button>
 </div>
+
+<script src="/js/post.js"></script>
+
 </body>
 </html>
 	<%@ include file="../layout/footer.jsp" %>
