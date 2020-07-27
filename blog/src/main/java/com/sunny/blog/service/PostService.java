@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sunny.blog.controller.dto.PostDetailRespDto;
 import com.sunny.blog.model.Post;
 import com.sunny.blog.repository.PostRepository;
 
@@ -24,5 +25,10 @@ public class PostService {
 	@Transactional(readOnly = true)
 	public List<Post> 목록보기() { 
 		return postRepository.findAll();
+	}
+	
+	@Transactional(readOnly = true)
+	public PostDetailRespDto 상세보기(int id) {  // 작성자도 받아야함
+		return postRepository.findById(id);
 	} 
 }

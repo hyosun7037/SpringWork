@@ -1,10 +1,11 @@
 package com.sunny.blog.controller;
 
-import java.util.List;
+import javax.management.AttributeValueExp;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,5 +48,15 @@ public class PostController {
 		model.addAttribute("posts", postService.목록보기());
 		return "index";
 	}
+	
+	// /post/안녕 => 오류
+	// ?주소 => 쿼리스트링 받는 것
+	// /post/{id} => 파라미터를 받는것
+	@GetMapping("/post/{id}") //파라미터로 데이터를 받을 수 있음
+	public String getPost(@PathVariable int id, Model model) { // int 값으로 주소 값을 받아줌
+		model.addAttribute("postDetailRespDto",postService.상세보기(id));
+		return "post/detail";
+	}
+	
 }
 
