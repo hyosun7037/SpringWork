@@ -21,7 +21,19 @@
 		where p.id = #{id} 
 	</select>
 	
+	
+	<select id="findOne" resultType="com.sunny.blog.model.Post">
+		SELECT * FROM post WHERE id = #{id}
+	</select>
+	
 	<delete id="deleteOne">
 		delete from post where id = #{id}
 	</delete>
+	
+	<update id="update">
+		update post set title = #{title}, content= #{content}  
+		WHERE id = #{id}
+	</update>
+	
+	
 </mapper>

@@ -1,6 +1,7 @@
 package com.sunny.blog.controller;
 
 import javax.management.AttributeValueExp;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,12 +9,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.sunny.blog.config.handler.exception.MyRoleException;
 import com.sunny.blog.controller.dto.CommonRespDto;
 import com.sunny.blog.model.Post;
+import com.sunny.blog.model.User;
+import com.sunny.blog.repository.PostRepository;
+import com.sunny.blog.repository.UserRepository;
 import com.sunny.blog.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -23,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class PostController {
 
 	private final PostService postService;
-	
+	private final PostRepository postRepository; // 인증체크
 	
 //	@Autowired
 //	private PostService postService;
@@ -60,11 +66,25 @@ public class PostController {
 		return "post/detail";
 	}
 	
-	@RequestMapping("/post/{id}")
-	public @ResponseBody CommonRespDto<?> deleteProc(@PathVariable int id) {
+	@DeleteMapping("/post/{id}")
+	public @ResponseBody CommonRespDto<?> deleteProc(@PathVariable int id, HttpSession session, MyRoleException myRoleException) throws MyRoleException {
+		// 세션 값 확인
+		User principal = (User)session.getAttribute("principal");
+		Post postEntity =  postRepository.findOne(id);
+		if(principal.getId() != postEntity.getUserId()) {
+//			throw new MyRoleException();
+			return new CommonRespDto<String>(-1, "권한없음");
+		}
 		postService.삭제하기(id);
 		return new CommonRespDto<String>(1, "삭제 성공");
 	}
+	
+	@PutMapping("/post/{id}")
+	public @ResponseBody CommonRespDto<?> update(@RequestBody Post post) {
+		postService.수정하기(post); //post 안에 있으니까 id는 따로 안받아도 됨
+		return new CommonRespDto<String>(1, "수정 성공");
+	}
+	
 	
 }
 

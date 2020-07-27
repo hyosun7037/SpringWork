@@ -36,4 +36,9 @@ public class PostService {
 	public void 삭제하기(int id) {  // 작성자도 받아야함
 		postRepository.deleteOne(id);
 	} 
+	
+	@Transactional
+	public void 수정하기(Post post) {  // 작성자도 받아야함
+		postRepository.update(post);
+	} 
 }
