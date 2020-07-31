@@ -54,11 +54,11 @@ let index = {
     		 alert("삭제성공");
     		 location.href="/";
     	 }else{
-    		 alert("권한없음:삭제실패");
+    		 alert("권한없음 : 삭제실패");
     	 }
          console.log(resp); // 자바스크립트 오브젝트가 되서 날라옴
       }).fail((error)=>{ // 실패시 ajax 통신이 안된 것
-         console.log(error);   
+         console.log(error);
       });
    },// deleteOne
       

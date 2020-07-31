@@ -1,6 +1,5 @@
 package com.sunny.blog.controller;
 
-import javax.management.AttributeValueExp;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sunny.blog.config.handler.exception.MyRoleException;
@@ -19,7 +17,6 @@ import com.sunny.blog.controller.dto.CommonRespDto;
 import com.sunny.blog.model.Post;
 import com.sunny.blog.model.User;
 import com.sunny.blog.repository.PostRepository;
-import com.sunny.blog.repository.UserRepository;
 import com.sunny.blog.service.PostService;
 
 import lombok.RequiredArgsConstructor;
